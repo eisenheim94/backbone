@@ -2,21 +2,21 @@
 <html lang="en" data-framework="backbonejs">
 	<head>
 		<meta charset="utf-8">
-		<title>Backbone.js • TodoMVC</title>
+		<title>Backbone.js | TodoMVC</title>
 		<link rel="stylesheet" href="assets/index.css">
 	</head>
 	<body>
-		<section id="todoapp" class="todoapp">
-			<header id="header" class="header">
+		<section class="todoapp">
+			<header class="header">
 				<h1>todos</h1>
-				<input id="new-todo" class="new-todo" placeholder="What needs to be done?" autofocus>
+				<input class="new-todo" placeholder="What needs to be done?" autofocus>
 			</header>
-			<section id="main" class="main">
-				<input class="toggle-all" id="toggle-all" type="checkbox">
+			<section class="main">
+				<input class="toggle-all" type="checkbox">
 				<label for="toggle-all">Mark all as complete</label>
-				<ul id="todo-list" class="todo-list"></ul>
+				<ul class="todo-list"></ul>
 			</section>
-			<footer id="footer" class="footer"></footer>
+			<footer class="footer"></footer>
 		</section>
 		<footer class="info">
 			<p>Double-click to edit a todo</p>
@@ -25,17 +25,17 @@
 		</footer>
 		<script type="text/template" id="item-template">
 			<div class="view">
-				<input id="toggle" class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
 				<label><%- title %></label>
-				<button id="destroy" class="destroy"></button>
+				<button class="destroy"></button>
 			</div>
-			<input id="edit" class="edit" value="<%- title %>">
+			<input class="edit" value="<%- title %>">
 		</script>
 		<script type="text/template" id="stats-template">
-			<span id="todo-count" class="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
-			<ul id="filters" class="filters">
+			<span class="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
+			<ul class="filters">
 				<li>
-					<a id="selected" class="selected" href="#/">All</a>
+					<a class="selected" href="#/">All</a>
 				</li>
 				<li>
 					<a href="#/active">Active</a>
@@ -45,7 +45,7 @@
 				</li>
 			</ul>
 			<% if (completed) { %>
-			<button id="clear-completed" class="clear-completed">Clear completed</button>
+			<button class="clear-completed">Clear completed</button>
 			<% } %>
 		</script>
 		<script src="js/lib/jquery-1.7.1.js"></script>

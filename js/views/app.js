@@ -6,17 +6,24 @@ var app = app || {};
 app.AppView = Backbone.View.extend({
 	// вместо того чтобы генерировать новый элемент, мы подключаемся
 	// к существующему скелету приложения, имеющемуся в HTML.
-	el: '#todoapp',
+	el: '.todoapp',
 	// шаблон строки статистики в нижней части приложения.
 	statsTemplate: _.template( $('#stats-template').html() ),
+	// Новый код
+	// Делегированные события для создания новых задач и удаления завершенных.
+	events: {
+		'keypress .new-todo': 'createOnEnter',
+		'click .clear-completed': 'clearCompleted',
+		'click .toggle-all': 'toggleAllComplete'
+	},
 	// при инициализации мы делаем привязку
 	// к соответствующим событиям коллекции `Todos`
 	// при добавлении и изменении событий.
 	initialize: function() {
-		this.allCheckbox = this.$('#toggle-all')[0];
-		this.$input = this.$('#new-todo');
-		this.$footer = this.$('#footer');
-		this.$main = this.$('#main');
+		this.allCheckbox = this.$('.toggle-all')[0];
+		this.$input = this.$('.new-todo');
+		this.$footer = this.$('.footer');
+		this.$main = this.$('.main');
 		this.listenTo(app.Todos, 'add', this.addOne);
 		this.listenTo(app.Todos, 'reset', this.addAll);
 		// Новое
@@ -38,7 +45,7 @@ app.AppView = Backbone.View.extend({
 				completed: completed,
 				remaining: remaining
 			}));
-			this.$('#filters li a')
+			this.$('.filters li a')
 			.removeClass('selected')
 			.filter('[href="#/' + ( app.TodoFilter || '' ) + '"]')
 			.addClass('selected');
@@ -52,11 +59,11 @@ app.AppView = Backbone.View.extend({
 	// представления для нее и добавления ее элемента в `<ul>`.
 	addOne: function( todo ) {
 		var view = new app.TodoView({ model: todo });
-		$('#todo-list').append( view.render().el );
+		$('.todo-list').append( view.render().el );
 	},
 	// Одновременное добавление всех элементов в коллекцию Todos.
 	addAll: function() {
-		this.$('#todo-list').html('');
+		this.$('.todo-list').html('');
 		app.Todos.each(this.addOne, this);
 	},
 	// Новое
